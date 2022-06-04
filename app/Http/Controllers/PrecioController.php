@@ -15,7 +15,12 @@ class PrecioController extends Controller
      */
     public function index()
     {
-        return Precio::all();
+        $precios = Precio::all();
+        return Response()->json([
+            "message" => "Mostrando Datos",
+            "data" => $precios,
+            "status" => 200
+        ],200);
     }
 
     /**
@@ -37,7 +42,11 @@ class PrecioController extends Controller
     public function store(StorePrecioRequest $request)
     {
         $precio = Precio::create($request->all());
-        return $precio;
+        return response()->json([
+            "message" => "El precio ha sido creado correctamente",
+            "data" => $precio,
+            "status" => 202
+        ],202);
     }
 
     /**
@@ -48,7 +57,11 @@ class PrecioController extends Controller
      */
     public function show(Precio $precio)
     {
-        return $precio;
+        return response()->json([
+            "message" => "Mostrando un Dato",
+            "data" => $precio,
+            "status" => 203
+        ],203);
     }
 
     /**
@@ -72,7 +85,11 @@ class PrecioController extends Controller
     public function update(UpdatePrecioRequest $request, Precio $precio)
     {
         $precio->update($request->all());
-        return $precio;
+        return response()->json([
+            "message" => "El precio ha sido Actualizado correctamente",
+            "data" => $precio,
+            "status" => 202
+        ],202);
     }
 
     /**
