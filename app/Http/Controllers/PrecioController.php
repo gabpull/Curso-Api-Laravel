@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Precio;
 use App\Http\Requests\StorePrecioRequest;
 use App\Http\Requests\UpdatePrecioRequest;
+use Illuminate\Http\Response;
 
 class PrecioController extends Controller
 {
@@ -19,8 +20,8 @@ class PrecioController extends Controller
         return Response()->json([
             "message" => "Mostrando Datos",
             "data" => $precios,
-            "status" => 200
-        ],200);
+            "status" => Response::HTTP_OK
+        ],Response::HTTP_OK);
     }
 
     /**
@@ -45,8 +46,8 @@ class PrecioController extends Controller
         return response()->json([
             "message" => "El precio ha sido creado correctamente",
             "data" => $precio,
-            "status" => 202
-        ],202);
+            "status" => Response::HTTP_CREATED
+        ],Response::HTTP_CREATED);
     }
 
     /**
@@ -60,8 +61,8 @@ class PrecioController extends Controller
         return response()->json([
             "message" => "Mostrando un Dato",
             "data" => $precio,
-            "status" => 203
-        ],203);
+            "status" => Response::HTTP_OK
+        ],Response::HTTP_OK);
     }
 
     /**
@@ -88,8 +89,8 @@ class PrecioController extends Controller
         return response()->json([
             "message" => "El precio ha sido Actualizado correctamente",
             "data" => $precio,
-            "status" => 202
-        ],202);
+            "status" => Response::HTTP_OK
+        ],Response::HTTP_OK);
     }
 
     /**
