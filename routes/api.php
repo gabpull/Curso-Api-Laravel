@@ -22,3 +22,6 @@ use App\Http\Controllers\PrecioController;
 }); */
 
 Route::apiResource('/precios', 'App\Http\Controllers\PrecioController');
+Route::apiResource('/empresas', 'App\Http\Controllers\EmpresaController');
+Route::apiResource('/alumnos', 'App\Http\Controllers\AlumnoController');
+Route::apiResource('/pagos', 'App\Http\Controllers\PagoController');

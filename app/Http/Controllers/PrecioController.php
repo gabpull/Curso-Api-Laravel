@@ -102,6 +102,10 @@ class PrecioController extends Controller
     public function destroy(Precio $precio)
     {
         $precio->delete();
-        return $precio;
+        return response()->json([
+            "message" => "El precio ha sido eliminado correctamente",
+            "data" => $precio,
+            "status" => Response::HTTP_OK
+        ], Response::HTTP_OK);
     }
 }

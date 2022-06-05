@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pago;
 use App\Http\Requests\StorePagoRequest;
 use App\Http\Requests\UpdatePagoRequest;
+use Illuminate\Http\Response;
 
 class PagoController extends Controller
 {
@@ -15,7 +16,12 @@ class PagoController extends Controller
      */
     public function index()
     {
-        //
+        $pagos = Pago::all();
+        return Response()->json([
+            "message" => "Mostrando Datos",
+            "data" => $pagos,
+            "status" => Response::HTTP_OK
+        ],Response::HTTP_OK);
     }
 
     /**
@@ -36,7 +42,12 @@ class PagoController extends Controller
      */
     public function store(StorePagoRequest $request)
     {
-        //
+        $pago = Pago::create($request->all());
+        return response()->json([
+            "message" => "El pago ha sido creado correctamente",
+            "data" => $pago,
+            "status" => Response::HTTP_CREATED
+        ],Response::HTTP_CREATED);
     }
 
     /**
@@ -47,7 +58,11 @@ class PagoController extends Controller
      */
     public function show(Pago $pago)
     {
-        //
+        return response()->json([
+            "message" => "Mostrando un Dato",
+            "data" => $pago,
+            "status" => Response::HTTP_OK
+        ],Response::HTTP_OK);
     }
 
     /**
@@ -70,7 +85,12 @@ class PagoController extends Controller
      */
     public function update(UpdatePagoRequest $request, Pago $pago)
     {
-        //
+        $pago->update($request->all());
+        return response()->json([
+            "message" => "El pago ha sido Actualizado correctamente",
+            "data" => $pago,
+            "status" => Response::HTTP_OK
+        ],Response::HTTP_OK);
     }
 
     /**
@@ -81,6 +101,11 @@ class PagoController extends Controller
      */
     public function destroy(Pago $pago)
     {
-        //
+        $pago->delete();
+        return response()->json([
+            "message" => "El pago ha sido eliminado correctamente",
+            "data" => $pago,
+            "status" => Response::HTTP_OK
+        ], Response::HTTP_OK);
     }
 }
