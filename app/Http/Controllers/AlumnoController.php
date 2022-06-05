@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Alumno;
 use App\Http\Requests\StoreAlumnoRequest;
 use App\Http\Requests\UpdateAlumnoRequest;
+use App\Models\Empresa;
 use Illuminate\Http\Response;
 
 class AlumnoController extends Controller
@@ -58,9 +59,11 @@ class AlumnoController extends Controller
      */
     public function show(Alumno $alumno)
     {
+        $empresa = Empresa::findorfail($alumno->id);
         return response()->json([
             "message" => "Mostrando un Dato",
-            "data" => $alumno,
+            "alumno" => $alumno,
+            "empresa" => $empresa,
             "status" => Response::HTTP_OK
         ],Response::HTTP_OK);
     }
