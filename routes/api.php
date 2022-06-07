@@ -21,7 +21,11 @@ use App\Http\Controllers\PrecioController;
     return $request->user();
 }); */
 
-Route::apiResource('/precios', 'App\Http\Controllers\PrecioController');
-Route::apiResource('/empresas', 'App\Http\Controllers\EmpresaController');
-Route::apiResource('/alumnos', 'App\Http\Controllers\AlumnoController');
-Route::apiResource('/pagos', 'App\Http\Controllers\PagoController');
+Route::post('/login', [UserController::class, 'login']);
+
+Route::middleware('auth')->group(function() {
+    Route::apiResource('/precios', 'App\Http\Controllers\PrecioController');
+    Route::apiResource('/empresas', 'App\Http\Controllers\EmpresaController');
+    Route::apiResource('/alumnos', 'App\Http\Controllers\AlumnoController');
+    Route::apiResource('/pagos', 'App\Http\Controllers\PagoController');
+ });  
