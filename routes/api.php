@@ -22,8 +22,9 @@ use App\Http\Controllers\PrecioController;
 }); */
 
 Route::post('/login', [UserController::class, 'login']);
+Route::post('/register', [UserController::class, 'register']);
 
-Route::middleware('auth')->group(function() {
+Route::middleware('auth:api')->group(function() {
     Route::apiResource('/precios', 'App\Http\Controllers\PrecioController');
     Route::apiResource('/empresas', 'App\Http\Controllers\EmpresaController');
     Route::apiResource('/alumnos', 'App\Http\Controllers\AlumnoController');
