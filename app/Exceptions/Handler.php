@@ -54,13 +54,16 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $e)
     {
         //dd($e);
-        if($e instanceof ModelNotFoundException)
-        {
-            return response()->json([
-                "messega" => "No se Encunetra el dato solicitado",
-                "status" => Response::HTTP_NOT_FOUND
-            ], Response::HTTP_NOT_FOUND);
+        if ($request->wantsJson()) {
+            if ($e instanceof ModelNotFoundException) {
+                return response()->json([
+                    "messega" => "No se Encunetra el dato solicitado",
+                    "status" => Response::HTTP_NOT_FOUND
+                ], Response::HTTP_NOT_FOUND);
+            }
+            return response()->json(["error" => "Algo malo pasó", Response::HTTP_INTERNAL_SERVER_ERROR]);
         }
+
         return parent::render($request, $e);
     }
 }
